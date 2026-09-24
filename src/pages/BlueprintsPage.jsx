@@ -6,6 +6,7 @@ import {
   fetchBlueprint,
 } from '../features/blueprints/blueprintsSlice.js'
 import BlueprintCanvas from '../components/BlueprintCanvas.jsx'
+import BlueprintList from '../components/BlueprintList.jsx'
 
 export default function BlueprintsPage() {
   const dispatch = useDispatch()
@@ -56,6 +57,20 @@ export default function BlueprintsPage() {
             {selectedAuthor ? `${selectedAuthor}'s blueprints:` : 'Results'}
           </h3>
           {status === 'loading' && <p>Cargando...</p>}
+          <BlueprintList items={items} onSelect={openBlueprint} />
+          <p style={{ marginTop: 12, fontWeight: 700 }}>Total user points: {totalPoints}</p>
+        </div>
+      </section>
+
+      <section className="card">
+        <h3 style={{ marginTop: 0 }}>Current blueprint: {current?.name || '—'}</h3>
+        <BlueprintCanvas points={current?.points || []} />
+      </section>
+    </div>
+  )
+}
+
+{/*
           {!items.length && status !== 'loading' && <p>Sin resultados.</p>}
           {!!items.length && (
             <div style={{ overflowX: 'auto' }}>
@@ -112,11 +127,4 @@ export default function BlueprintsPage() {
           <p style={{ marginTop: 12, fontWeight: 700 }}>Total user points: {totalPoints}</p>
         </div>
       </section>
-
-      <section className="card">
-        <h3 style={{ marginTop: 0 }}>Current blueprint: {current?.name || '—'}</h3>
-        <BlueprintCanvas points={current?.points || []} />
-      </section>
-    </div>
-  )
-}
+*/}
