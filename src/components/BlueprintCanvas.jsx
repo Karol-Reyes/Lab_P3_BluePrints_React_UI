@@ -1,15 +1,17 @@
 import { useEffect, useRef } from 'react'
 
-export default function BlueprintCanvas({ points = [], width = 520, height = 360 }) {
+export default function BlueprintCanvas({ id = 'blueprint-canvas', points = [], width = 520, height = 360 }) {
   const ref = useRef(null)
 
   useEffect(() => {
     const canvas = ref.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
+
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     ctx.fillStyle = '#0b1220'
     ctx.fillRect(0, 0, canvas.width, canvas.height)
+    
     ctx.strokeStyle = 'rgba(148,163,184,0.15)'
     ctx.lineWidth = 1
     for (let x = 0; x < canvas.width; x += 40) {
@@ -18,12 +20,14 @@ export default function BlueprintCanvas({ points = [], width = 520, height = 360
       ctx.lineTo(x, canvas.height)
       ctx.stroke()
     }
+    
     for (let y = 0; y < canvas.height; y += 40) {
       ctx.beginPath()
       ctx.moveTo(0, y)
       ctx.lineTo(canvas.width, y)
       ctx.stroke()
     }
+    
     if (points.length > 1) {
       ctx.strokeStyle = '#93c5fd'
       ctx.lineWidth = 2
@@ -35,6 +39,7 @@ export default function BlueprintCanvas({ points = [], width = 520, height = 360
       }
       ctx.stroke()
     }
+    
     ctx.fillStyle = '#fbbf24'
     for (const p of points) {
       ctx.beginPath()
@@ -45,6 +50,7 @@ export default function BlueprintCanvas({ points = [], width = 520, height = 360
 
   return (
     <canvas
+      id={id}
       ref={ref}
       width={width}
       height={height}
