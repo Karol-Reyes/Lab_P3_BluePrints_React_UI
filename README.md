@@ -1,5 +1,10 @@
 # Lab – React Client for Blueprints (Redux + Axios + JWT)
 
+### Estudiantes
+
+* Juan David Moreno D'Aleman
+* Karol Ximena Rodriguez Reyes
+
 > Basado en el cliente HTML/JS del repo de referencia, este laboratorio moderniza el _frontend_ con **React + Vite**, **Redux Toolkit**, **Axios** (con interceptores y JWT), **React Router** y pruebas con **Vitest + Testing Library**.
 
 ## Objetivos de aprendizaje
@@ -107,6 +112,19 @@ VITE_USE_MOCK=true
 
 - `VITE_USE_MOCK=true` usa el mock.
 - `VITE_USE_MOCK=false` usa el API real.
+
+---
+
+### Alternar entre datos mock y API real
+
+`VITE_USE_MOCK=true` usa `apiMock.js` (datos de prueba en memoria, sin backend).
+`VITE_USE_MOCK=false` usa `apiClientReal.js` (API REST real vía Axios).
+
+Ambos implementan la misma interfaz (`getAll`, `getByAuthor`, `getByAuthorAndName`, `create`),
+seleccionada en `src/services/blueprintsService.js` según la variable de entorno, el resto
+de la app (Redux, componentes) no sabe ni le importa cuál está activo.
+
+---
 
 ## 5. Interfaz con React
 

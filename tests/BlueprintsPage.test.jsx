@@ -28,6 +28,20 @@ function makeStore(preloaded) {
 }
 
 describe('BlueprintsPage', () => {
+  it('muestra en el DOM el nombre del blueprint actual desde Redux', () => {
+    render(
+      <Provider
+        store={makeStore({
+          current: { author: 'JohnConnor', name: 'house', points: [{ x: 1, y: 2 }] },
+        })}
+      >
+        <BlueprintsPage />
+      </Provider>,
+    )
+
+    expect(screen.getByText('Current blueprint: house')).toBeInTheDocument()
+  })
+
   it('despacha fetchByAuthor al hacer click en Get blueprints', () => {
     const store = makeStore()
     const spy = vi.spyOn(store, 'dispatch')
