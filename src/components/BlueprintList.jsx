@@ -1,28 +1,23 @@
 export default function BlueprintList({ items = [], onSelect }) {
   if (!items.length) return <p>No hay resultados.</p>
   return (
-    <div style={{ overflowY: 'auto'}}>
-      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <div className="table-wrap">
+      <table className="blueprint-table">
         <thead>
           <tr>
-            <th style={{ textAlign: 'left', padding: '8px', borderBottom: '1px solid #334155' }}>
-              Blueprint Name
-            </th>
-            <th style={{ textAlign: 'left', padding: '8px', borderBottom: '1px solid #334155' }}>
-              Number of Points
-            </th>
-            <th style={{ textAlign: 'left', padding: '8px', borderBottom: '1px solid #334155' }}>
-            </th>
+            <th>Blueprint Name</th>
+            <th>Number of Points</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          {items.map((bp) =>(
+          {items.map((bp) => (
             <tr key={bp.name}>
-              <td style={{ padding: '8px', borderBottom: '1px solid #1f2937' }}>{bp.name}</td>
-              <td style={{ padding: '8px', textAlign: 'right', borderBottom: '1px solid #1f2937' }}>
+              <td>{bp.name}</td>
+              <td>
                 {bp.points.length || 0}
               </td>
-              <td style={{ padding: '8px', borderBottom: '1px solid #1f2937' }}>
+              <td>
                 <button className="btn" onClick={() => onSelect(bp)}>
                   Open
                 </button>

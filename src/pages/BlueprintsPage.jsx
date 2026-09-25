@@ -35,11 +35,12 @@ export default function BlueprintsPage() {
   }
 
   return (
-    <div className="grid" style={{ gridTemplateColumns: '1.1fr 1.4fr', gap: 24 }}>
-      <section className="grid" style={{ gap: 16 }}>
+    <div className="grid page-grid">
+      <section className="grid">
         <div className="card">
-          <h2 style={{ marginTop: 0 }}>Blueprints</h2>
-          <div style={{ display: 'flex', gap: 12 }}>
+          <p className="eyebrow">Explora tus diseños</p>
+          <h2>Blueprints</h2>
+          <div className="toolbar">
             <input
               className="input"
               placeholder="Author"
@@ -53,17 +54,20 @@ export default function BlueprintsPage() {
         </div>
 
         <div className="card">
-          <h3 style={{ marginTop: 0 }}>
+          <h3>
             {selectedAuthor ? `${selectedAuthor}'s blueprints:` : 'Results'}
           </h3>
           {status === 'loading' && <p>Cargando...</p>}
           <BlueprintList items={items} onSelect={openBlueprint} />
-          <p style={{ marginTop: 12, fontWeight: 700 }}>Total user points: {totalPoints}</p>
+          <p className="muted"><strong>Total user points:</strong> {totalPoints}</p>
         </div>
       </section>
 
-      <section className="card">
-        <h3 style={{ marginTop: 0 }}>Current blueprint: {current?.name || '—'}</h3>
+      <section className="card canvas-frame">
+        <div>
+          <p className="eyebrow">Vista previa</p>
+          <h3>Current blueprint: {current?.name || '—'}</h3>
+        </div>
         <BlueprintCanvas points={current?.points || []} />
       </section>
     </div>
